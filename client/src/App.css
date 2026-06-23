@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0f0f1a; color: #e2e8f0; min-height: 100vh; }
+
+.navbar {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(12px);
+}
+.navbar h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+.navbar h1 span { background: linear-gradient(90deg, #e94560, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.navbar-right { display: flex; align-items: center; gap: 12px; }
+.ws-status { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 500; color: #94a3b8; }
+.ws-dot { width: 8px; height: 8px; border-radius: 50%; }
+.ws-dot.connected { background: #22c55e; box-shadow: 0 0 8px #22c55e88; animation: pulse-dot 2s infinite; }
+.ws-dot.disconnected { background: #ef4444; box-shadow: 0 0 8px #ef444488; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 32px; max-width: 1200px; margin: 0 auto; }
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.12); }
+
+.card-img-wrapper { position: relative; overflow: hidden; }
+.card-img-wrapper img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.4s ease; }
+.card:hover .card-img-wrapper img { transform: scale(1.08); }
+.card-img-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(transparent, rgba(15,15,26,0.9)); }
+
+.card-body { padding: 16px 18px 18px; }
+.card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+.badge.green { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+.badge.red { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; }
+.badge.green .badge-dot { background: #4ade80; animation: pulse-dot 2s infinite; }
+.badge.red .badge-dot { background: #f87171; }
+
+.actions { display: flex; gap: 10px; margin-top: 14px; }
+.actions button {
+  flex: 1; padding: 10px; border: none; border-radius: 10px;
+  cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem;
+  transition: all 0.2s ease; letter-spacing: 0.2px;
+}
+.btn-toggle { background: linear-gradient(135deg, #e94560, #c23152); color: #fff; }
+.btn-toggle.enable { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.btn-toggle:hover { opacity: 0.9; transform: scale(1.03); }
+.btn-sim { background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08) !important; }
+.btn-sim:hover { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+
+.toast-container { position: fixed; top: 80px; right: 24px; z-index: 100; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  padding: 12px 20px; border-radius: 10px; font-size: 0.82rem; font-weight: 500;
+  background: rgba(30,30,50,0.95); border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px); color: #e2e8f0;
+  animation: slide-in 0.3s ease, fade-out 0.3s ease 2.7s forwards;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes slide-in { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fade-out { to { opacity: 0; transform: translateX(40px); } }
